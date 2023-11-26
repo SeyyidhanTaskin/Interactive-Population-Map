@@ -1,0 +1,74 @@
+# Original Mappings
+-------------------
+
+{
+  "mappings": {
+    "_meta": {
+      "created_by": "file-data-visualizer"
+    },
+    "properties": {
+      "admin_name": {
+        "type": "keyword"
+      },
+      "capital": {
+        "type": "keyword"
+      },
+      "city": {
+        "type": "keyword"
+      },
+      "country": {
+        "type": "keyword"
+      },
+      "iso2": {
+        "type": "keyword"
+      },
+      "lat": {
+        "type": "double"
+      },
+      "lon": {
+        "type": "double"
+      },
+      "population": {
+        "type": "long"
+      },
+      "population_proper": {
+        "type": "long"
+      }
+    }
+  }
+}
+
+
+
+
+
+
+# Custom Mappings
+-----------------
+
+
+PUT germanyall/_doc/1
+{
+  "mappings": {
+    "_meta": {
+      "created_by": "file-data-visualizer"
+    },
+    "properties": {
+      "city": {
+        "type": "keyword"
+      },
+      "lat": {
+        "type": "double"
+      },
+      "lon": {
+        "type": "double"
+      },
+      "population": {
+        "type": "integer"
+      },
+      "location": {
+        "type": "geo_point"
+      }
+    }
+  }
+}
