@@ -1,6 +1,9 @@
 # Interactive-Population-Map
 
 
+Project Guide
+-------------
+
 1- First, download information about a country of your choice, including its city name, population, latitude, and longitude, in CSV format.
 
 2- In the "Get started by adding integrations" section of Elasticsearch's "Home" interface, click on "Upload a file."
