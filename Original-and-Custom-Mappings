@@ -1,6 +1,8 @@
 # Original Mappings
 -------------------
 
+
+PUT project/doc/1
 {
   "mappings": {
     "_meta": {
@@ -47,7 +49,7 @@
 -----------------
 
 
-PUT germanyall/_doc/1
+PUT customproject/_doc/1
 {
   "mappings": {
     "_meta": {
