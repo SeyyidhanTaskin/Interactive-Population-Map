@@ -1,0 +1,102 @@
+PUT project/_doc/1
+{
+  "mappings": {
+    "_meta": {
+      "created_by": "file-data-visualizer"
+    },
+    "properties": {
+      "admin_name": {
+        "type": "keyword"
+      },
+      "capital": {
+        "type": "keyword"
+      },
+      "city": {
+        "type": "keyword"
+      },
+      "country": {
+        "type": "keyword"
+      },
+      "iso2": {
+        "type": "keyword"
+      },
+      "lat": {
+        "type": "double"
+      },
+      "lon": {
+        "type": "double"
+      },
+      "population": {
+        "type": "long"
+      },
+      "population_proper": {
+        "type": "long"
+      }
+    }
+  }
+}
+
+
+PUT country/_doc/1
+{
+  "mappings": {
+    "_meta": {
+      "created_by": "file-data-visualizer"
+    },
+    "properties": {
+      "city": {
+        "type": "keyword"
+      },
+      "lat": {
+        "type": "double"
+      },
+      "lon": {
+        "type": "double"
+      },
+      "population": {
+        "type": "integer"
+      },
+      "location": {
+        "type": "geo_point"
+      }
+    }
+  }
+}
+
+POST _reindex
+{
+  "source": {
+    "index": "project"
+  },
+  "dest": {
+    "index": "country"
+  }
+}
+
+
+PUT country/_mapping
+{
+  "properties": {
+    "location2": {
+      "type": "geo_point"
+    }
+  }
+}
+
+
+PUT _ingest/pipeline/test-country
+{
+  "processors": [
+    {
+      "set": {
+        "field": "location2",
+        "value": "{{lat}},{{lon}}"
+      }
+    }
+  ]
+}
+
+
+POST country/_update_by_query?pipeline=test-country&conflicts=proceed
+
+
